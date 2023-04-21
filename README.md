@@ -1,4 +1,9 @@
 
+# consumer-pat-service
+
+O objetivo deste desafio é avaliar suas habilidades em realizar um 'code review' e melhorar a qualidade do código de
+uma API desenvolvida em Spring Boot, utilizada para gerenciar os consumidores e as transações de cartão de benefícios dos consumidores.
+
 ## Requisitos 
 
 * JDK `11` ou `17`
