@@ -11,3 +11,13 @@ spring:
   h2:
     console.enabled: true
     console.path: /h2-console
+
+logging:
+  level:
+    org.springframework: ERROR
+    com.github.leandrochp.consumerpatservice: DEBUG
+  pattern:
+    console: "[%d{dd-MM-yyyy HH:mm:ss.SSS}] - %msg%n"
+    file: "[%d{dd-MM-yyyy HH:mm:ss.SSS}] [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: app.log
