@@ -1,25 +1,30 @@
 package com.github.leandrochp.consumerpatservice.domain.enums;
 
+import lombok.val;
+
+import java.math.BigDecimal;
+
 public enum EstablishmentType {
-    FOOD_CARD(1),
-    DRUG_STORE(2),
-    FUEL_CARD(3);
-
-    private final int value;
-
-    EstablishmentType(int value) {
-        this.value = value;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public static EstablishmentType getEnum(int value) {
-        for (EstablishmentType e : values()) {
-            if (e.getValue() == value)
-                return e;
+    FOOD {
+        @Override
+        public BigDecimal taxCalculate(BigDecimal value) {
+            val cashback = value.divide(new BigDecimal(100)).multiply(BigDecimal.valueOf(10.0));
+            return value.subtract(cashback);
         }
-        throw new IllegalArgumentException();
-    }
+    },
+    DRUG_STORE {
+        @Override
+        public BigDecimal taxCalculate(BigDecimal value) {
+            return value;
+        }
+    },
+    FUEL {
+        @Override
+        public BigDecimal taxCalculate(BigDecimal value) {
+            val tax = value.divide(new BigDecimal(100)).multiply(BigDecimal.valueOf(35.0));
+            return value.add(tax);
+        }
+    };
+
+    public abstract BigDecimal taxCalculate(BigDecimal value);
 }

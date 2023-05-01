@@ -1,17 +1,17 @@
-package com.github.leandrochp.consumerpatservice.domain.dto;
+package com.github.leandrochp.consumerpatservice.domain.dtos;
 
 import com.github.leandrochp.consumerpatservice.domain.enums.EstablishmentType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
-public class DebitCard {
-    private int consumerId;
+public class Settlement {
     private EstablishmentType establishmentType;
     private String establishmentName;
     private String productDescription;
     private String cardNumber;
-    private double value;
-
+    private BigDecimal value;
 }

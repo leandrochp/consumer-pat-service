@@ -4,37 +4,31 @@ import com.github.leandrochp.consumerpatservice.domain.entities.Card;
 import com.github.leandrochp.consumerpatservice.domain.repositories.CardRepository;
 import com.github.leandrochp.consumerpatservice.infrastructure.repositories.entities.CardEntity;
 import com.github.leandrochp.consumerpatservice.infrastructure.repositories.jpas.CardJpaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
-@Component
+@RequiredArgsConstructor
+@Repository
 public class H2CardRepository implements CardRepository {
 
-    private final CardJpaRepository cardRepository;
-
-    @Autowired
-    public H2CardRepository(final CardJpaRepository cardJpaRepository) {
-        this.cardRepository = cardJpaRepository;
-    }
+    private final CardJpaRepository cardJpaRepository;
 
     @Override
-    public Optional<Card> findByCardNumberAndConsumerId(String cardNumber, int consumerId) {
-        Optional<Card> card = Optional.empty();
-
-        Optional<CardEntity> cardEntity = cardRepository.findByCardNumberAndConsumerId(cardNumber, consumerId);
-        if (cardEntity.isPresent()) {
-            card = Optional.of(cardEntity.get().toModel());
+    public Card findByCardNumber(String cardNumber) {
+        CardEntity cardEntity = cardJpaRepository.findByCardNumber(cardNumber);
+        if (cardEntity != null) {
+            return cardEntity.toModel();
         }
-        return card;
+        return null;
     }
 
     @Override
     public void updateBalance(Card card) {
-        Optional<CardEntity> cardEntity = cardRepository.findById(card.getId());
+        CardEntity cardEntity = cardJpaRepository.findByCardNumber(card.getCardNumber());
+        if (cardEntity != null) {
+            cardEntity.setValue(card.getValue());
 
-        cardEntity.ifPresent(entity -> entity.setBalance(card.getBalance()));
-        cardRepository.save(cardEntity.get());
+            cardJpaRepository.save(cardEntity);
+        }
     }
 }

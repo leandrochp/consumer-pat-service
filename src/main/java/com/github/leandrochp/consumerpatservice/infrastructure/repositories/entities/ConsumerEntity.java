@@ -1,34 +1,30 @@
 package com.github.leandrochp.consumerpatservice.infrastructure.repositories.entities;
 
+import com.github.leandrochp.consumerpatservice.domain.entities.Address;
 import com.github.leandrochp.consumerpatservice.domain.entities.Card;
 import com.github.leandrochp.consumerpatservice.domain.entities.Consumer;
+import com.github.leandrochp.consumerpatservice.domain.entities.Contact;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "consumer")
-@NoArgsConstructor
 public class ConsumerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "consumer_id")
-    private int id;
+    private Integer id;
+
     private String name;
+
     @Column(name = "document_number")
     private String documentNumber;
     @Column(name = "birth_date")
@@ -39,25 +35,83 @@ public class ConsumerEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private AddressEntity address;
 
-    @OneToMany(mappedBy = "consumer", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "consumer")
     private List<CardEntity> cards;
+
+    public ConsumerEntity copyProperties(Consumer consumer) {
+        BeanUtils.copyProperties(consumer, this);
+        BeanUtils.copyProperties(consumer.getContact(), this.contact);
+        BeanUtils.copyProperties(consumer.getAddress(), this.address);
+
+        return this;
+    }
 
     public Consumer toModel() {
         Consumer consumer = new Consumer();
+        consumer.setId(this.id);
+        consumer.setName(this.name);
+        consumer.setDocumentNumber(this.documentNumber);
+        consumer.setBirthDate(this.birthDate);
 
-        BeanUtils.copyProperties(this, consumer);
-        consumer.setContact(contact.toModel());
-        consumer.setAddress(address.toModel());
-
-        if (cards != null) {
-            List<Card> cardsToModel = new ArrayList<>();
-            for (CardEntity cardEntity : cards) {
-                if (cardEntity != null) {
-                    cardsToModel.add(cardEntity.toModel());
-                }
-            }
-            consumer.setCards(cardsToModel);
-        }
+        consumer.setContact(this.contact.toModel());
+        consumer.setAddress(this.address.toModel());
+        consumer.setCards(
+                this.cards.stream().map(CardEntity::toModel).collect(Collectors.toList())
+        );
         return consumer;
+    }
+
+    public static ConsumerEntity toEntity(Consumer consumer) {
+        ConsumerEntity consumerEntity = new ConsumerEntity();
+        consumerEntity.id = consumer.getId();
+        consumerEntity.name = consumer.getName();
+        consumerEntity.documentNumber = consumer.getDocumentNumber();
+        consumerEntity.birthDate = consumer.getBirthDate();
+        consumerEntity.setContactEntity(consumer.getContact());
+        consumerEntity.setAddressEntity(consumer.getAddress());
+        consumerEntity.setCardEntities(consumer.getCards());
+
+        return consumerEntity;
+    }
+
+    private void setContactEntity(Contact contact) {
+        ContactEntity contactEntity = new ContactEntity();
+        contactEntity.setMobilePhoneNumber(contact.getMobilePhoneNumber());
+        contactEntity.setResidencePhoneNumber(contact.getResidencePhoneNumber());
+        contactEntity.setWorkPhoneNumber(contact.getWorkPhoneNumber());
+        contactEntity.setEmail(contact.getEmail());
+        contactEntity.setConsumer(this);
+
+        this.contact = contactEntity;
+    }
+
+    private void setAddressEntity(Address address) {
+        AddressEntity addressEntity = new AddressEntity();
+        addressEntity.setStreet(address.getStreet());
+        addressEntity.setNumber(address.getNumber());
+        addressEntity.setCity(address.getCity());
+        addressEntity.setCountry(address.getCountry());
+        addressEntity.setPortalCode(address.getPortalCode());
+        addressEntity.setConsumer(this);
+
+        this.address = addressEntity;
+    }
+
+    private void setCardEntities(List<Card> cards) {
+        if (cards != null) {
+            List<CardEntity> cardEntities = new ArrayList<>();
+            for (Card card : cards) {
+                CardEntity cardEntity = new CardEntity();
+                cardEntity.setEstablishmentType(card.getEstablishmentType());
+                cardEntity.setCardNumber(card.getCardNumber());
+                cardEntity.setValue(card.getValue());
+                cardEntity.setConsumer(this);
+
+                cardEntities.add(cardEntity);
+            }
+
+            this.cards = cardEntities;
+        }
+
     }
 }

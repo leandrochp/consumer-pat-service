@@ -4,20 +4,11 @@ import com.github.leandrochp.consumerpatservice.infrastructure.repositories.enti
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
-@Repository
 public interface CardJpaRepository extends JpaRepository<CardEntity, Integer> {
-
     @Query(
-            nativeQuery = true,
-            value = "select * from card c where c.card_number = :cardNumber and c.consumer_id = :consumerId"
+            value = "SELECT * FROM card c WHERE c.card_number = :cardNumber",
+            nativeQuery = true
     )
-    Optional<CardEntity> findByCardNumberAndConsumerId(
-            @Param("cardNumber") String cardNumber,
-            @Param("consumerId") int consumerId
-    );
-
+    CardEntity findByCardNumber(@Param("cardNumber") String cardNumber);
 }

@@ -1,12 +1,11 @@
 package com.github.leandrochp.consumerpatservice.domain.services;
 
-import com.github.leandrochp.consumerpatservice.domain.dto.CardBalance;
-import com.github.leandrochp.consumerpatservice.domain.dto.DebitCard;
-import com.github.leandrochp.consumerpatservice.domain.exceptions.CardNotFoundException;
+import com.github.leandrochp.consumerpatservice.domain.dtos.Settlement;
+
+import java.math.BigDecimal;
 
 public interface CardService {
 
-    void addBalance(CardBalance cardBalance) throws CardNotFoundException;
-
-    void buy(DebitCard debitCard) throws CardNotFoundException;
+    void addBalance(String cardNumber, BigDecimal value);
+    void updateBalance(Settlement settlement);
 }

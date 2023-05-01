@@ -1,4 +1,4 @@
-package com.github.leandrochp.consumerpatservice.application.web.requests;
+package com.github.leandrochp.consumerpatservice.application.web.responses;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,17 +10,15 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class ConsumerRequest {
+public class ConsumerResponse {
     private Integer id;
     private String name;
-
     @JsonProperty("document_number")
     private String documentNumber;
     @JsonProperty("birth_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate birthDate;
-
-    private ContactRequest contact;
-    private AddressRequest address;
-    private List<CardRequest> cards;
+    private ContactResponse contact;
+    private AddressResponse address;
+    private List<CardResponse> cards;
 }

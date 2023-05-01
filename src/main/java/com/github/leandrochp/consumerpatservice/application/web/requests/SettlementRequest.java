@@ -5,9 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
-public class DebitCardRequest {
+public class SettlementRequest {
     @JsonProperty("establishment_type")
     private EstablishmentType establishmentType;
     @JsonProperty("establishment_name")
@@ -16,6 +18,6 @@ public class DebitCardRequest {
     private String productDescription;
     @JsonProperty("card_number")
     private String cardNumber;
-    private double value;
 
+    private BigDecimal value;
 }

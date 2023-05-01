@@ -4,39 +4,34 @@ import com.github.leandrochp.consumerpatservice.domain.entities.Card;
 import com.github.leandrochp.consumerpatservice.domain.enums.EstablishmentType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.BeanUtils;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "card")
-@NoArgsConstructor
 public class CardEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
+
     @Column(name = "establishment_type")
-    private int establishmentType;
+    private EstablishmentType establishmentType;
     @Column(name = "card_number")
     private String cardNumber;
-    private double balance;
+
+    private BigDecimal value;
 
     @ManyToOne
-    @JoinColumn(name = "consumer_id")
     private ConsumerEntity consumer;
 
     public Card toModel() {
         Card card = new Card();
-        BeanUtils.copyProperties(this, card);
-        card.setEstablishmentType(EstablishmentType.getEnum(this.establishmentType));
+        card.setEstablishmentType(this.establishmentType);
+        card.setCardNumber(this.cardNumber);
+        card.setValue(this.value);
 
         return card;
     }

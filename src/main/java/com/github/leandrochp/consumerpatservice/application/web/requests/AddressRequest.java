@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AddressRequest {
     private String street;
-    private int number;
+    private Integer number;
     private String city;
     private String country;
+
     @JsonProperty("portal_code")
     private String portalCode;
-
 }

@@ -1,20 +1,25 @@
 package com.github.leandrochp.consumerpatservice.domain.entities;
 
 import com.github.leandrochp.consumerpatservice.domain.enums.EstablishmentType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.val;
+
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
 public class Card {
-    @JsonIgnore
-    private int id;
-    @JsonProperty("establishment_type")
     private EstablishmentType establishmentType;
-    @JsonProperty("card_number")
     private String cardNumber;
-    private double balance;
+    private BigDecimal value;
 
+    public void add(BigDecimal value) {
+        this.value = this.value.add(value);
+    }
+
+    public void subtract(BigDecimal value) {
+        val tax = establishmentType.taxCalculate(value);
+        this.value = this.value.subtract(tax);
+    }
 }
