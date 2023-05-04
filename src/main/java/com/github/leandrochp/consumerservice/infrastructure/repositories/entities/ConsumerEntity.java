@@ -102,7 +102,7 @@ public class ConsumerEntity {
             List<CardEntity> cardEntities = new ArrayList<>();
             for (Card card : cards) {
                 CardEntity cardEntity = new CardEntity();
-                cardEntity.setEstablishmentType(card.getEstablishmentType());
+                cardEntity.setCardType(card.getCardType());
                 cardEntity.setCardNumber(card.getCardNumber());
                 cardEntity.setValue(card.getValue());
                 cardEntity.setConsumer(this);

@@ -49,9 +49,10 @@ public class CardServiceImpl implements CardService {
 
             throw new CardNotFoundException(message);
         }
-        if (card.getEstablishmentType() != settlement.getEstablishmentType()) {
+        if (!card.getCardType().equals(settlement.getCardType())) {
             val message = "The card type does not accept this establishment type.";
             log.error(message);
+
             throw new EstablishmentTypeException(message);
         }
 

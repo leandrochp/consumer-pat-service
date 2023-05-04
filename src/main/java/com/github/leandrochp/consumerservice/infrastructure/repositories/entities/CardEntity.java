@@ -1,7 +1,7 @@
 package com.github.leandrochp.consumerservice.infrastructure.repositories.entities;
 
 import com.github.leandrochp.consumerservice.domain.entities.Card;
-import com.github.leandrochp.consumerservice.domain.enums.EstablishmentType;
+import com.github.leandrochp.consumerservice.domain.enums.CardType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,8 +17,8 @@ public class CardEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "establishment_type")
-    private EstablishmentType establishmentType;
+    @Column(name = "card_type")
+    private CardType cardType;
     @Column(name = "card_number")
     private String cardNumber;
 
@@ -29,7 +29,7 @@ public class CardEntity {
 
     public Card toModel() {
         Card card = new Card();
-        card.setEstablishmentType(this.establishmentType);
+        card.setCardType(this.cardType);
         card.setCardNumber(this.cardNumber);
         card.setValue(this.value);
 

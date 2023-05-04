@@ -13,11 +13,13 @@ import java.util.List;
 public class ConsumerResponse {
     private Integer id;
     private String name;
+
     @JsonProperty("document_number")
     private String documentNumber;
     @JsonProperty("birth_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate birthDate;
+
     private ContactResponse contact;
     private AddressResponse address;
     private List<CardResponse> cards;

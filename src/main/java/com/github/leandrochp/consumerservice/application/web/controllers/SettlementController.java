@@ -18,8 +18,8 @@ public class SettlementController {
     private final SettlementMapper mapper;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void settle(
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void settlement(
             @RequestBody @NotNull SettlementRequest settlementRequest
     ) {
         cardService.updateBalance(mapper.toModel(settlementRequest));

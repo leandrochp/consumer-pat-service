@@ -13,5 +13,6 @@ public class ContactResponse {
     private String residencePhoneNumber;
     @JsonProperty("work_phone_number")
     private String workPhoneNumber;
+
     private String email;
 }

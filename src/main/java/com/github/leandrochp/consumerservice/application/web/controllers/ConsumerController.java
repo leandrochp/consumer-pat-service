@@ -36,7 +36,7 @@ public class ConsumerController {
         return mapper.toResponse(consumerService.save(consumer));
     }
 
-    @PutMapping
+    @PatchMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody @NotNull ConsumerRequest consumerRequest) {
         consumerService.update(mapper.toModel(consumerRequest));

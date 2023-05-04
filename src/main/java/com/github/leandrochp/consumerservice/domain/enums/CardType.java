@@ -4,27 +4,33 @@ import lombok.val;
 
 import java.math.BigDecimal;
 
-public enum EstablishmentType {
-    FOOD {
+public enum CardType {
+    FOOD(10.0) {
         @Override
         public BigDecimal taxCalculate(BigDecimal value) {
-            val cashback = value.divide(new BigDecimal(100)).multiply(BigDecimal.valueOf(10.0));
-            return value.subtract(cashback);
+            val tax = value.divide(new BigDecimal(100)).multiply(percent);
+            return value.subtract(tax);
         }
     },
-    DRUG_STORE {
+    PHARMACY(0.0) {
         @Override
         public BigDecimal taxCalculate(BigDecimal value) {
             return value;
         }
     },
-    FUEL {
+    FUEL(35.0) {
         @Override
         public BigDecimal taxCalculate(BigDecimal value) {
-            val tax = value.divide(new BigDecimal(100)).multiply(BigDecimal.valueOf(35.0));
+            val tax = value.divide(new BigDecimal(100)).multiply(percent);
             return value.add(tax);
         }
     };
+
+    CardType(double percent) {
+        this.percent = BigDecimal.valueOf(percent);
+    }
+
+    protected final BigDecimal percent;
 
     public abstract BigDecimal taxCalculate(BigDecimal value);
 }
