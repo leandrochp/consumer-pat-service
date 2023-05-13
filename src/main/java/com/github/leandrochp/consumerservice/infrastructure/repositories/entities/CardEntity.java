@@ -22,7 +22,7 @@ public class CardEntity {
     @Column(name = "card_number")
     private String cardNumber;
 
-    private BigDecimal value;
+    private BigDecimal balance;
 
     @ManyToOne
     private ConsumerEntity consumer;
@@ -31,7 +31,7 @@ public class CardEntity {
         Card card = new Card();
         card.setCardType(this.cardType);
         card.setCardNumber(this.cardNumber);
-        card.setValue(this.value);
+        card.setBalance(this.balance);
 
         return card;
     }

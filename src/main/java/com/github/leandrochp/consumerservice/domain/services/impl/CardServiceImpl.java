@@ -27,7 +27,7 @@ public class CardServiceImpl implements CardService {
         log.info("Adding balance on card");
         Card card = cardRepository.findByCardNumber(cardNumber);
         if (card == null) {
-            val message = "The card number not was found.";
+            val message = "The card number not found";
             log.error(message);
 
             throw new CardNotFoundException(message);
@@ -44,13 +44,13 @@ public class CardServiceImpl implements CardService {
         log.info("Updating balance on card");
         Card card = cardRepository.findByCardNumber(settlement.getCardNumber());
         if (card == null) {
-            val message = "The card number not found.";
+            val message = "The card number not found";
             log.error(message);
 
             throw new CardNotFoundException(message);
         }
         if (!card.getCardType().equals(settlement.getCardType())) {
-            val message = "The card type does not accept this establishment type.";
+            val message = "The card type does not accept this establishment type";
             log.error(message);
 
             throw new EstablishmentTypeException(message);

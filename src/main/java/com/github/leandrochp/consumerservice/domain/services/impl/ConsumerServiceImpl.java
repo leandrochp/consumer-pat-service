@@ -23,7 +23,7 @@ public class ConsumerServiceImpl implements ConsumerService {
         log.info("Finding consumers");
         Page<Consumer> consumers = consumerRepository.findAll(page, size);
         if (consumers.isEmpty()) {
-            val message = "There were not found consumers.";
+            val message = "There were not found consumers";
             log.warn(message);
             throw new ConsumersNotFoundException(message);
         }
@@ -40,7 +40,7 @@ public class ConsumerServiceImpl implements ConsumerService {
     public void update(Consumer consumer) {
         log.info("Updating consumer");
         if (!consumerRepository.existsById(consumer.getId())) {
-            val message = "The consumer not found.";
+            val message = "The consumer not found";
             log.error(message);
 
             throw new ConsumerNotFoundException(message);

@@ -104,7 +104,7 @@ public class ConsumerEntity {
                 CardEntity cardEntity = new CardEntity();
                 cardEntity.setCardType(card.getCardType());
                 cardEntity.setCardNumber(card.getCardNumber());
-                cardEntity.setValue(card.getValue());
+                cardEntity.setBalance(card.getBalance());
                 cardEntity.setConsumer(this);
 
                 cardEntities.add(cardEntity);

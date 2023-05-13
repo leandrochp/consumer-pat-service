@@ -8,8 +8,8 @@ public enum CardType {
     FOOD(10.0) {
         @Override
         public BigDecimal taxCalculate(BigDecimal value) {
-            val tax = value.divide(new BigDecimal(100)).multiply(percent);
-            return value.subtract(tax);
+            val cashback = value.divide(new BigDecimal(100)).multiply(percent);
+            return value.subtract(cashback);
         }
     },
     PHARMACY(0.0) {

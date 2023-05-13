@@ -12,14 +12,14 @@ import java.math.BigDecimal;
 public class Card {
     private CardType cardType;
     private String cardNumber;
-    private BigDecimal value;
+    private BigDecimal balance;
 
     public void add(BigDecimal value) {
-        this.value = this.value.add(value);
+        this.balance = balance.add(value);
     }
 
     public void subtract(BigDecimal value) {
         val tax = cardType.taxCalculate(value);
-        this.value = this.value.subtract(tax);
+        this.balance = balance.subtract(tax);
     }
 }

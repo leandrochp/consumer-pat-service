@@ -15,5 +15,5 @@ public class CardResponse {
     @JsonProperty("card_number")
     private String cardNumber;
 
-    private BigDecimal value;
+    private BigDecimal balance;
 }

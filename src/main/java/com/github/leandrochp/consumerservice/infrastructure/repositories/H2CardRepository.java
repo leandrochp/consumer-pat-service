@@ -26,7 +26,7 @@ public class H2CardRepository implements CardRepository {
     public void updateBalance(Card card) {
         CardEntity cardEntity = cardJpaRepository.findByCardNumber(card.getCardNumber());
         if (cardEntity != null) {
-            cardEntity.setValue(card.getValue());
+            cardEntity.setBalance(card.getBalance());
 
             cardJpaRepository.save(cardEntity);
         }
