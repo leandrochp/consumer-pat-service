@@ -1,6 +1,6 @@
 package com.github.leandrochp.consumerservice.domain.services.impl;
 
-import com.github.leandrochp.consumerservice.domain.entities.Consumer;
+import com.github.leandrochp.consumerservice.domain.consumer.Consumer;
 import com.github.leandrochp.consumerservice.domain.exceptions.ConsumerNotFoundException;
 import com.github.leandrochp.consumerservice.domain.exceptions.ConsumersNotFoundException;
 import com.github.leandrochp.consumerservice.domain.repositories.ConsumerRepository;

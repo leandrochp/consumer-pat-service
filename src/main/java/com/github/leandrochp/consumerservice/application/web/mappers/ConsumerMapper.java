@@ -2,7 +2,7 @@ package com.github.leandrochp.consumerservice.application.web.mappers;
 
 import com.github.leandrochp.consumerservice.application.web.requests.ConsumerRequest;
 import com.github.leandrochp.consumerservice.application.web.responses.ConsumerResponse;
-import com.github.leandrochp.consumerservice.domain.entities.Consumer;
+import com.github.leandrochp.consumerservice.domain.consumer.Consumer;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

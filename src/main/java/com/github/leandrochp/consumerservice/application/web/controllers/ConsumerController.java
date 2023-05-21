@@ -3,7 +3,7 @@ package com.github.leandrochp.consumerservice.application.web.controllers;
 import com.github.leandrochp.consumerservice.application.web.mappers.ConsumerMapper;
 import com.github.leandrochp.consumerservice.application.web.requests.ConsumerRequest;
 import com.github.leandrochp.consumerservice.application.web.responses.ConsumerResponse;
-import com.github.leandrochp.consumerservice.domain.entities.Consumer;
+import com.github.leandrochp.consumerservice.domain.consumer.Consumer;
 import com.github.leandrochp.consumerservice.domain.services.ConsumerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

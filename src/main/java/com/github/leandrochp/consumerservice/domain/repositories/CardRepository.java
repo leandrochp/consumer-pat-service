@@ -1,6 +1,6 @@
 package com.github.leandrochp.consumerservice.domain.repositories;
 
-import com.github.leandrochp.consumerservice.domain.entities.Card;
+import com.github.leandrochp.consumerservice.domain.consumer.Card;
 
 public interface CardRepository {
 

@@ -1,6 +1,6 @@
 package com.github.leandrochp.consumerservice.domain.repositories;
 
-import com.github.leandrochp.consumerservice.domain.entities.Consumer;
+import com.github.leandrochp.consumerservice.domain.consumer.Consumer;
 import org.springframework.data.domain.Page;
 
 public interface ConsumerRepository {

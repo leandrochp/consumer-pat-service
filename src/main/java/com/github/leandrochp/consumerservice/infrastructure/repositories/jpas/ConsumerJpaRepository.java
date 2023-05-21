@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ConsumerJpaRepository extends JpaRepository<ConsumerEntity, Integer> {
 
-    @Query("From ConsumerEntity c")
+    @Query("From consumer c")
     Page<ConsumerEntity> findAllPageable(Pageable pageable);
 }

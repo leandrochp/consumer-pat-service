@@ -1,4 +1,4 @@
-package com.github.leandrochp.consumerservice.domain.entities;
+package com.github.leandrochp.consumerservice.domain.consumer;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,6 @@
 package com.github.leandrochp.consumerservice.infrastructure.repositories;
 
-import com.github.leandrochp.consumerservice.domain.entities.Card;
+import com.github.leandrochp.consumerservice.domain.consumer.Card;
 import com.github.leandrochp.consumerservice.domain.repositories.CardRepository;
 import com.github.leandrochp.consumerservice.infrastructure.repositories.entities.CardEntity;
 import com.github.leandrochp.consumerservice.infrastructure.repositories.jpas.CardJpaRepository;

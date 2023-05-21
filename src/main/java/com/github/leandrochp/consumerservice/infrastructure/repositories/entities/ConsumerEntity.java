@@ -1,9 +1,9 @@
 package com.github.leandrochp.consumerservice.infrastructure.repositories.entities;
 
-import com.github.leandrochp.consumerservice.domain.entities.Address;
-import com.github.leandrochp.consumerservice.domain.entities.Card;
-import com.github.leandrochp.consumerservice.domain.entities.Consumer;
-import com.github.leandrochp.consumerservice.domain.entities.Contact;
+import com.github.leandrochp.consumerservice.domain.consumer.Address;
+import com.github.leandrochp.consumerservice.domain.consumer.Card;
+import com.github.leandrochp.consumerservice.domain.consumer.Consumer;
+import com.github.leandrochp.consumerservice.domain.consumer.Contact;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -16,8 +16,7 @@ import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
-@Entity
-@Table(name = "consumer")
+@Entity(name = "consumer")
 public class ConsumerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,9 +29,9 @@ public class ConsumerEntity {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "consumer")
     private ContactEntity contact;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "consumer")
     private AddressEntity address;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "consumer")

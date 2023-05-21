@@ -1,6 +1,6 @@
 package com.github.leandrochp.consumerservice.infrastructure.repositories;
 
-import com.github.leandrochp.consumerservice.domain.entities.Consumer;
+import com.github.leandrochp.consumerservice.domain.consumer.Consumer;
 import com.github.leandrochp.consumerservice.domain.repositories.ConsumerRepository;
 import com.github.leandrochp.consumerservice.infrastructure.repositories.entities.ConsumerEntity;
 import com.github.leandrochp.consumerservice.infrastructure.repositories.jpas.ConsumerJpaRepository;

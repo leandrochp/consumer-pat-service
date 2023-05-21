@@ -1,6 +1,6 @@
 package com.github.leandrochp.consumerservice.infrastructure.repositories.entities;
 
-import com.github.leandrochp.consumerservice.domain.entities.Contact;
+import com.github.leandrochp.consumerservice.domain.consumer.Contact;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,8 +8,7 @@ import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
-@Entity
-@Table(name = "contact")
+@Entity(name = "contact")
 public class ContactEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

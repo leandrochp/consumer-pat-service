@@ -1,7 +1,7 @@
 package com.github.leandrochp.consumerservice.domain.services.impl;
 
 import com.github.leandrochp.consumerservice.domain.dtos.Settlement;
-import com.github.leandrochp.consumerservice.domain.entities.Card;
+import com.github.leandrochp.consumerservice.domain.consumer.Card;
 import com.github.leandrochp.consumerservice.domain.exceptions.CardNotFoundException;
 import com.github.leandrochp.consumerservice.domain.exceptions.EstablishmentTypeException;
 import com.github.leandrochp.consumerservice.domain.repositories.CardRepository;

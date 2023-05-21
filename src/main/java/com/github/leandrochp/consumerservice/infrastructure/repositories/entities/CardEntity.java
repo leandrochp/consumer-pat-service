@@ -1,6 +1,6 @@
 package com.github.leandrochp.consumerservice.infrastructure.repositories.entities;
 
-import com.github.leandrochp.consumerservice.domain.entities.Card;
+import com.github.leandrochp.consumerservice.domain.consumer.Card;
 import com.github.leandrochp.consumerservice.domain.enums.CardType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +10,7 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-@Entity
-@Table(name = "card")
+@Entity(name = "card")
 public class CardEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

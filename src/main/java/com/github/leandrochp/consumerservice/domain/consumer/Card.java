@@ -1,4 +1,4 @@
-package com.github.leandrochp.consumerservice.domain.entities;
+package com.github.leandrochp.consumerservice.domain.consumer;
 
 import com.github.leandrochp.consumerservice.domain.enums.CardType;
 import lombok.Data;

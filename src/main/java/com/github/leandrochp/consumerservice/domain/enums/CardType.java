@@ -5,7 +5,7 @@ import lombok.val;
 import java.math.BigDecimal;
 
 public enum CardType {
-    FOOD(10.0) {
+    MEAL(10.0) {
         @Override
         public BigDecimal taxCalculate(BigDecimal value) {
             val cashback = value.divide(new BigDecimal(100)).multiply(percent);
