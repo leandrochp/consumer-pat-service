@@ -10,7 +10,7 @@ description = 'consumer-service'
 
 sourceCompatibility = 11
 targetCompatibility = 11
-assert System.properties["java.specification.version"] == "11" || "17"
+assert System.properties["java.specification.version"] == "11"
 
 configurations {
     compileOnly {
