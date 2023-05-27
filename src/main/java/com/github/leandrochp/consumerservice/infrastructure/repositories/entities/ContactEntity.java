@@ -3,6 +3,7 @@ package com.github.leandrochp.consumerservice.infrastructure.repositories.entiti
 import com.github.leandrochp.consumerservice.domain.consumer.Contact;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.val;
 
 import javax.persistence.*;
 
@@ -27,7 +28,7 @@ public class ContactEntity {
     private ConsumerEntity consumer;
 
     public Contact toModel() {
-        Contact contact = new Contact();
+        val contact = new Contact();
         contact.setMobilePhoneNumber(this.mobilePhoneNumber);
         contact.setResidencePhoneNumber(this.residencePhoneNumber);
         contact.setWorkPhoneNumber(this.workPhoneNumber);

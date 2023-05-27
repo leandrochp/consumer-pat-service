@@ -4,6 +4,7 @@ import com.github.leandrochp.consumerservice.domain.consumer.Card;
 import com.github.leandrochp.consumerservice.domain.enums.CardType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.val;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -27,7 +28,7 @@ public class CardEntity {
     private ConsumerEntity consumer;
 
     public Card toModel() {
-        Card card = new Card();
+        val card = new Card();
         card.setCardType(this.cardType);
         card.setCardNumber(this.cardNumber);
         card.setBalance(this.balance);

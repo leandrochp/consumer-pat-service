@@ -4,6 +4,7 @@ import com.github.leandrochp.consumerservice.domain.exceptions.CardNotFoundExcep
 import com.github.leandrochp.consumerservice.domain.exceptions.ConsumerNotFoundException;
 import com.github.leandrochp.consumerservice.domain.exceptions.ConsumersNotFoundException;
 import com.github.leandrochp.consumerservice.domain.exceptions.EstablishmentTypeException;
+import lombok.val;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.ResponseEntity;
@@ -22,14 +23,14 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
             ConsumerNotFoundException.class, ConsumersNotFoundException.class
     })
     public ResponseEntity<Object> handleEntityNotFound(Exception ex) {
-        ApiError apiError = new ApiError(NOT_FOUND);
+        val apiError = new ApiError(NOT_FOUND);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
     }
 
     @ExceptionHandler({EstablishmentTypeException.class})
     public ResponseEntity<Object> handleEntityBadRequest(Exception ex) {
-        ApiError apiError = new ApiError(BAD_REQUEST);
+        val apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
     }

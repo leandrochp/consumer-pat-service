@@ -6,6 +6,7 @@ import com.github.leandrochp.consumerservice.domain.consumer.Consumer;
 import com.github.leandrochp.consumerservice.domain.consumer.Contact;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.val;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
@@ -46,7 +47,7 @@ public class ConsumerEntity {
     }
 
     public Consumer toModel() {
-        Consumer consumer = new Consumer();
+        val consumer = new Consumer();
         consumer.setId(this.id);
         consumer.setName(this.name);
         consumer.setDocumentNumber(this.documentNumber);
@@ -61,7 +62,7 @@ public class ConsumerEntity {
     }
 
     public static ConsumerEntity toEntity(Consumer consumer) {
-        ConsumerEntity consumerEntity = new ConsumerEntity();
+        val consumerEntity = new ConsumerEntity();
         consumerEntity.id = consumer.getId();
         consumerEntity.name = consumer.getName();
         consumerEntity.documentNumber = consumer.getDocumentNumber();
@@ -74,7 +75,7 @@ public class ConsumerEntity {
     }
 
     private void setContactEntity(Contact contact) {
-        ContactEntity contactEntity = new ContactEntity();
+        val contactEntity = new ContactEntity();
         contactEntity.setMobilePhoneNumber(contact.getMobilePhoneNumber());
         contactEntity.setResidencePhoneNumber(contact.getResidencePhoneNumber());
         contactEntity.setWorkPhoneNumber(contact.getWorkPhoneNumber());
@@ -85,7 +86,7 @@ public class ConsumerEntity {
     }
 
     private void setAddressEntity(Address address) {
-        AddressEntity addressEntity = new AddressEntity();
+        val addressEntity = new AddressEntity();
         addressEntity.setStreet(address.getStreet());
         addressEntity.setNumber(address.getNumber());
         addressEntity.setCity(address.getCity());
@@ -98,9 +99,9 @@ public class ConsumerEntity {
 
     private void setCardEntities(List<Card> cards) {
         if (cards != null) {
-            List<CardEntity> cardEntities = new ArrayList<>();
+            val cardEntities = new ArrayList<CardEntity>();
             for (Card card : cards) {
-                CardEntity cardEntity = new CardEntity();
+                val cardEntity = new CardEntity();
                 cardEntity.setCardType(card.getCardType());
                 cardEntity.setCardNumber(card.getCardNumber());
                 cardEntity.setBalance(card.getBalance());

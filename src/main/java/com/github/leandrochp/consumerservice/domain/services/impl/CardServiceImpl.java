@@ -1,7 +1,6 @@
 package com.github.leandrochp.consumerservice.domain.services.impl;
 
 import com.github.leandrochp.consumerservice.domain.dtos.Settlement;
-import com.github.leandrochp.consumerservice.domain.consumer.Card;
 import com.github.leandrochp.consumerservice.domain.exceptions.CardNotFoundException;
 import com.github.leandrochp.consumerservice.domain.exceptions.EstablishmentTypeException;
 import com.github.leandrochp.consumerservice.domain.repositories.CardRepository;
@@ -25,7 +24,7 @@ public class CardServiceImpl implements CardService {
     @Override
     public void addBalance(String cardNumber, BigDecimal value) {
         log.info("Adding balance on card");
-        Card card = cardRepository.findByCardNumber(cardNumber);
+        val card = cardRepository.findByCardNumber(cardNumber);
         if (card == null) {
             val message = "The card number not found";
             log.error(message);
@@ -42,7 +41,7 @@ public class CardServiceImpl implements CardService {
     @Override
     public void updateBalance(Settlement settlement) {
         log.info("Updating balance on card");
-        Card card = cardRepository.findByCardNumber(settlement.getCardNumber());
+        val card = cardRepository.findByCardNumber(settlement.getCardNumber());
         if (card == null) {
             val message = "The card number not found";
             log.error(message);

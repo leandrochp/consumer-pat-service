@@ -5,6 +5,7 @@ import com.github.leandrochp.consumerservice.domain.repositories.ConsumerReposit
 import com.github.leandrochp.consumerservice.infrastructure.repositories.entities.ConsumerEntity;
 import com.github.leandrochp.consumerservice.infrastructure.repositories.jpas.ConsumerJpaRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
@@ -17,7 +18,7 @@ public class H2ConsumerRepository implements ConsumerRepository {
 
     @Override
     public Page<Consumer> findAll(int page, int size) {
-        Page<ConsumerEntity> consumerEntities =
+        val consumerEntities =
                 consumerJpaRepository.findAllPageable(PageRequest.of(page, size));
 
         return consumerEntities.map(ConsumerEntity::toModel);
@@ -30,7 +31,7 @@ public class H2ConsumerRepository implements ConsumerRepository {
 
     @Override
     public Consumer save(Consumer consumer) {
-        ConsumerEntity consumerEntity = ConsumerEntity.toEntity(consumer);
+        val consumerEntity = ConsumerEntity.toEntity(consumer);
         consumerJpaRepository.save(consumerEntity);
 
         consumer.setId(consumerEntity.getId());

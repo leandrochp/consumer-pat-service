@@ -3,6 +3,7 @@ package com.github.leandrochp.consumerservice.infrastructure.repositories.entiti
 import com.github.leandrochp.consumerservice.domain.consumer.Address;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.val;
 
 import javax.persistence.*;
 
@@ -26,7 +27,7 @@ public class AddressEntity {
     private ConsumerEntity consumer;
 
     public Address toModel() {
-        Address address = new Address();
+        val address = new Address();
         address.setStreet(this.street);
         address.setNumber(this.number);
         address.setCity(this.city);

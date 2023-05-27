@@ -21,7 +21,7 @@ public class ConsumerServiceImpl implements ConsumerService {
     @Override
     public Page<Consumer> findAll(int page, int size) {
         log.info("Finding consumers");
-        Page<Consumer> consumers = consumerRepository.findAll(page, size);
+        val consumers = consumerRepository.findAll(page, size);
         if (consumers.isEmpty()) {
             val message = "There were not found consumers";
             log.warn(message);

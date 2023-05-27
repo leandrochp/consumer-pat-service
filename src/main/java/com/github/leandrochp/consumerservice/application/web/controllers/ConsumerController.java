@@ -3,9 +3,9 @@ package com.github.leandrochp.consumerservice.application.web.controllers;
 import com.github.leandrochp.consumerservice.application.web.mappers.ConsumerMapper;
 import com.github.leandrochp.consumerservice.application.web.requests.ConsumerRequest;
 import com.github.leandrochp.consumerservice.application.web.responses.ConsumerResponse;
-import com.github.leandrochp.consumerservice.domain.consumer.Consumer;
 import com.github.leandrochp.consumerservice.domain.services.ConsumerService;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +32,7 @@ public class ConsumerController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ConsumerResponse save(@RequestBody @NotNull ConsumerRequest consumerRequest) {
-        Consumer consumer = mapper.toModel(consumerRequest);
+        val consumer = mapper.toModel(consumerRequest);
         return mapper.toResponse(consumerService.save(consumer));
     }
 
