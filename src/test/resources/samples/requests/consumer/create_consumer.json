@@ -1,0 +1,35 @@
+{
+  "name": "Name",
+  "document_number": "1234567890",
+  "birth_date": "01/01/1900",
+  "contact": {
+    "mobile_phone_number": "1234567890",
+    "residence_phone_number": "1234567890",
+    "work_phone_number": "1234567890",
+    "email": "email@test.com"
+  },
+  "address": {
+    "street": "Street",
+    "number": 123,
+    "city": "City",
+    "country": "Country",
+    "portal_code": "1234567890"
+  },
+  "cards": [
+    {
+      "card_type": "MEAL",
+      "card_number": "1234567890",
+      "balance": 10.0
+    },
+    {
+      "card_type": "PHARMACY",
+      "card_number": "1234567890",
+      "balance": 11.0
+    },
+    {
+      "card_type": "FUEL",
+      "card_number": "1234567890",
+      "balance": 12.0
+    }
+  ]
+}

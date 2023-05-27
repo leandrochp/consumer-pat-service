@@ -1,0 +1,19 @@
+{
+    "id": -1,
+    "name": "Name updated",
+    "document_number": "1234567890",
+    "birth_date": "01/01/2000",
+    "contact": {
+        "mobile_phone_number": "1234567890",
+        "residence_phone_number": "1234567890",
+        "work_phone_number": "1234567890",
+        "email": "email@test.com"
+    },
+    "address": {
+        "street": "Street updated",
+        "number": 123,
+        "city": "City updated",
+        "country": "Country updated",
+        "portal_code": "1234567890"
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "card_type": "MEAL",
+  "establishment_type": 1,
+  "establishment_name": "Establishment test",
+  "product_description": "Product test",
+  "card_number": "%s",
+  "value": 45.0
+}

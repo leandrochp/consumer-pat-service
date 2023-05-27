@@ -1,9 +1,10 @@
 package com.github.leandrochp.consumerservice.domain.services;
 
+import com.github.leandrochp.consumerservice.domain.consumer.Card;
+import com.github.leandrochp.consumerservice.domain.consumer.CardMock;
 import com.github.leandrochp.consumerservice.domain.dtos.Settlement;
 import com.github.leandrochp.consumerservice.domain.dtos.SettlementMock;
-import com.github.leandrochp.consumerservice.domain.entities.Card;
-import com.github.leandrochp.consumerservice.domain.entities.CardMock;
+import com.github.leandrochp.consumerservice.domain.enums.CardType;
 import com.github.leandrochp.consumerservice.domain.exceptions.CardNotFoundException;
 import com.github.leandrochp.consumerservice.domain.exceptions.EstablishmentTypeException;
 import com.github.leandrochp.consumerservice.domain.repositories.CardRepository;
@@ -30,8 +31,9 @@ public class CardServiceTest {
     private CardRepository cardRepository;
 
     @Test
-    void givenACardAddBalanceShouldAddBalanceWithSuccess() {
+    void givenACardNumber_shouldAddBalanceWithSuccess() {
         Card cardMock = CardMock.sample();
+
         when(cardRepository.findByCardNumber(any())).thenReturn(cardMock);
 
         cardService.addBalance("123", BigDecimal.valueOf(200));
@@ -40,10 +42,10 @@ public class CardServiceTest {
     }
 
     @Test
-    void whenAddBalanceWithACardNumberIsNotFoundShouldThrowCardNotFoundException() {
+    void whenAddBalanceWithACardNumberNotFound_shouldThrowCardNotFoundException() {
         when(cardRepository.findByCardNumber(any())).thenReturn(null);
 
-        RuntimeException exception =
+        CardNotFoundException exception =
                 assertThrows(
                         CardNotFoundException.class,
                         () -> cardService.addBalance("123", BigDecimal.ZERO)
@@ -54,19 +56,20 @@ public class CardServiceTest {
     }
 
     @Test
-    void givenASettlementShouldUpdateBalanceWithSuccess() {
+    void givenASettlement_shouldUpdateCardBalanceWithSuccess() {
         Card cardMock = CardMock.sample();
+
         when(cardRepository.findByCardNumber(any())).thenReturn(cardMock);
 
         cardService.updateBalance(SettlementMock.sample());
-        assertEquals(BigDecimal.valueOf(20.0), cardMock.getBalance());
+        assertEquals(BigDecimal.valueOf(-70.0), cardMock.getBalance());
     }
 
     @Test
-    void whenASettlementWithACardNumberIsNotFoundShouldThrowCardNotFoundException() {
+    void whenASettlementWithACardNumberNotFound_shouldThrowCardNotFoundException() {
         when(cardRepository.findByCardNumber(any())).thenReturn(null);
 
-        RuntimeException exception =
+        CardNotFoundException exception =
                 assertThrows(
                         CardNotFoundException.class,
                         () -> cardService.updateBalance(Mockito.mock(Settlement.class))
@@ -77,17 +80,18 @@ public class CardServiceTest {
     }
 
     @Test
-    void whenASettlementWithCardTypeDoesNotAcceptThrowsEstablishmentTypeException() {
+    void whenASettlementWithCardTypeDoesNotAccept_shouldThrowsEstablishmentTypeException() {
+        Settlement settlementMock = SettlementMock.sample(CardType.MEAL);
+
         when(cardRepository.findByCardNumber(any())).thenReturn(CardMock.sample());
 
-        RuntimeException exception =
+        EstablishmentTypeException exception =
                 assertThrows(
                         EstablishmentTypeException.class,
-                        () -> cardService.updateBalance(Mockito.mock(Settlement.class))
+                        () -> cardService.updateBalance(settlementMock)
                 );
 
         assertNotNull(exception);
         assertEquals("The card type does not accept this establishment type", exception.getMessage());
     }
-
 }

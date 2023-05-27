@@ -1,4 +1,4 @@
-package com.github.leandrochp.consumerservice.domain.entities;
+package com.github.leandrochp.consumerservice.domain.consumer;
 
 import com.github.leandrochp.consumerservice.domain.enums.CardType;
 
@@ -11,22 +11,22 @@ public class ConsumerMock {
     public static Consumer sample() {
         Consumer consumer = new Consumer();
         consumer.setId(1);
-        consumer.setName("John Wick");
-        consumer.setDocumentNumber("123456789");
+        consumer.setName("Name");
+        consumer.setDocumentNumber("1234567890");
         consumer.setBirthDate(LocalDate.now());
 
         Contact contact = new Contact();
         contact.setMobilePhoneNumber("1234567890");
         contact.setResidencePhoneNumber("1234567890");
         contact.setWorkPhoneNumber("1234567890");
-        contact.setEmail("test@mockito.com");
+        contact.setEmail("email@test.com");
 
         Address address = new Address();
         address.setStreet("Street");
         address.setNumber(123);
         address.setCity("City");
         address.setCountry("Country");
-        address.setPortalCode("123");
+        address.setPortalCode("1234567890");
 
         Card card = new Card();
         card.setCardType(CardType.PHARMACY);

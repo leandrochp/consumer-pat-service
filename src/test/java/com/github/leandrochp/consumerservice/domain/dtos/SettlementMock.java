@@ -6,15 +6,19 @@ import java.math.BigDecimal;
 
 public class SettlementMock {
 
-    public static Settlement sample() {
+    public static Settlement sample(CardType cardType) {
         Settlement settlement = new Settlement() ;
-        settlement.setCardType(CardType.FOOD);
+        settlement.setCardType(cardType);
         settlement.setEstablishmentType(1);
-        settlement.setEstablishmentName("Hotel Continual");
-        settlement.setProductDescription("Sour drink");
-        settlement.setCardNumber("5511951672116907");
+        settlement.setEstablishmentName("Test");
+        settlement.setProductDescription("Test");
+        settlement.setCardNumber("1234567890");
         settlement.setValue(BigDecimal.valueOf(200));
 
         return settlement;
+    }
+
+    public static Settlement sample() {
+        return sample(CardType.FUEL);
     }
 }

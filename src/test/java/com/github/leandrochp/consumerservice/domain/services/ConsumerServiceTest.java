@@ -1,7 +1,7 @@
 package com.github.leandrochp.consumerservice.domain.services;
 
-import com.github.leandrochp.consumerservice.domain.entities.Consumer;
-import com.github.leandrochp.consumerservice.domain.entities.ConsumerMock;
+import com.github.leandrochp.consumerservice.domain.consumer.Consumer;
+import com.github.leandrochp.consumerservice.domain.consumer.ConsumerMock;
 import com.github.leandrochp.consumerservice.domain.exceptions.ConsumerNotFoundException;
 import com.github.leandrochp.consumerservice.domain.exceptions.ConsumersNotFoundException;
 import com.github.leandrochp.consumerservice.domain.repositories.ConsumerRepository;
@@ -30,8 +30,9 @@ public class ConsumerServiceTest {
     private ConsumerRepository consumerRepository;
 
     @Test
-    void whenFindConsumersShouldReturnConsumers() {
+    void whenFindConsumers_shouldReturnConsumers() {
         List<Consumer> consumers = List.of(mock(Consumer.class));
+
         when(consumerRepository.findAll(anyInt(), anyInt())).thenReturn(new PageImpl<>(consumers));
 
         Page<Consumer> result = consumerService.findAll(0, 1);
@@ -42,8 +43,9 @@ public class ConsumerServiceTest {
     }
 
     @Test
-    void whenFindConsumersThereWereNotFoundShouldThrowConsumersNotFoundException() {
+    void whenFindConsumersThereWereNotFound_shouldThrowConsumersNotFoundException() {
         List<Consumer> consumers = List.of();
+
         when(consumerRepository.findAll(anyInt(), anyInt())).thenReturn(new PageImpl<>(consumers));
 
         RuntimeException exception =
@@ -57,8 +59,9 @@ public class ConsumerServiceTest {
     }
 
     @Test
-    void givenAConsumerShouldSaveWithSuccess() {
+    void whenSaveAConsumer_shouldSaveWithSuccess() {
         Consumer consumerMock = ConsumerMock.sample();
+
         when(consumerRepository.save(consumerMock)).thenReturn(consumerMock);
 
         Consumer result = consumerService.save(consumerMock);
@@ -66,16 +69,18 @@ public class ConsumerServiceTest {
     }
 
     @Test
-    void givenAConsumerFoundShouldUpdateWithSuccess() {
+    void whenUpdateAConsumer_shouldUpdateWithSuccess() {
         Consumer consumerMock = ConsumerMock.sample();
+
         when(consumerRepository.existsById(anyInt())).thenReturn(true);
 
         assertDoesNotThrow(() -> consumerService.update(consumerMock));
     }
 
     @Test
-    void givenAConsumerIsNotFoundShouldThrowConsumerNotFoundException() {
+    void givenAConsumerNotFound_shouldThrowConsumerNotFoundException() {
         Consumer consumerMock = ConsumerMock.sample();
+
         when(consumerRepository.existsById(anyInt())).thenReturn(false);
 
         RuntimeException exception =
