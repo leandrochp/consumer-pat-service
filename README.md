@@ -47,4 +47,4 @@ Se uma exceção for lançada, este próprio serviço a trata e retorna o result
 
 A camada de domínio imprime o que está acontecendo nos logs, que podem fornecer a solução de problemas no ambiente de produção.
 
-A camada de persistência é responsável por converter as entidades em documentos para persistir em banco de dados.
+A camada de persistência é responsável por persistir em banco de dados.
